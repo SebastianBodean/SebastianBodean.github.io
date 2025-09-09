@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<script type="text/javascript" src="customElements.js"></script>
+<link rel="stylesheet" type="text/css" href="animations.css">
+
+<style>
+    html { height: 100%; width: 100%; margin: 0; overflow: hidden; scrollbar-width: none;}
+    body { height: 100%; width: 100%; overflow: scroll; scrollbar-width: none;}
+    p { font-size: large; text-decoration: none;}
+
+    .title 
+    {
+        font-size: 32px;
+    }
+
+    .separatorLine
+    {
+        border-bottom: outset;
+        margin: 20px 0px;
+    }
+
+    .subtitle { font-size: larger;}
+
+    .content
+    {
+        font-size: 20px;
+        text-decoration: 0px;
+    }
+
+    .section
+    {
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        box-shadow: 0px 4px 13px -3px black;
+        border-radius: 15px;
+        margin: 10px;
+    }
+
+    .sectionHeader
+    {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+</style>
+
+<script>
+    firstYearContent = 
+    `
+        <div class="subtitle" id="Y1-CSA">
+            Computer System Architecture – 76% 
+        </div> <br>
+        Gained a solid understanding of modern computer system architectures and operating systems. Learned to write programs in a low-level language such as C and 
+        understood how key data forms are represented and processed at the machine level. Explored the foundational components of a computer system, including the 
+        arithmetic-logic unit, registers, CPU, and memory, and how these interact to execute instructions. Gained insight into various computing architectures, 
+        from von Neumann to MIMD, as well as the principles of digital logic and hardware interfacing. Demonstrated knowledge of operating system design and 
+        functionality, including resource management, scheduling, memory handling, and file systems. <br> <br>
+
+        SKILLS: Problem solving, Logical reasoning, Technical communication <br>
+        TOOLS: Arduino, C (Programming language)
+
+        <div class="separatorLine" id="Y1-AI"></div>
+
+        <div class="subtitle">
+            Artificial Intelligence – 69% 
+        </div> <br>
+        Developed a foundational understanding of Artificial Intelligence, including key techniques such as pathfinding and basic machine learning classification 
+        using Naive Bayes. Learned to apply a range of AI methods to simple problem-solving scenarios, while gaining insight into their strengths, limitations, 
+        and appropriate use cases. Deepened my understanding of probability theory and its role in AI decision-making. Explored the broader social, legal, and 
+        ethical implications of AI technologies, enhancing my awareness of responsible and informed AI development and application. <br> <br>
+
+        TOOLS: Python, Java
+
+        <div class="separatorLine" id="Y1-P1"></div>
+
+        <div class="subtitle">
+            Programming 1 – 78%
+        </div> <br>
+        Gained practical experience writing programs in both functional and imperative programming languages, such as Haskell and Python. Developed an understanding 
+        of key programming concepts including control structures, recursion, and higher-order functions, and worked with inductive data structures like lists and 
+        trees. Learned to implement and reason about basic algorithms, apply testing and debugging techniques, and evaluate algorithmic complexity at a fundamental 
+        level. Developed a strong foundation in programming by exploring different paradigms and emphasizing both practical skills and theoretical understanding. <br> <br>
+
+        SKILLS: Functional programming, Imperative programming <br>
+        TOOLS: Haskel, Python
+
+        <div class="separatorLine" id="Y1-P2"></div>
+
+        <div class="subtitle">
+            Programming 2 – 77%
+        </div> <br>
+        Developed the ability to write programs using object-oriented programming principles in a language such as Java, while gaining experience with advanced 
+        techniques including event handling, error handling, multi-threading, and basic networking. Learned to design and implement fundamental data structures and 
+        algorithms, and to structure code for reusability and maintainability. Planned, organized, and built software collaboratively, applying core software 
+        engineering practices in real-world programming scenarios while working within an Agile software development paradigm. <br> <br>
+
+        SKILLS: Object-Oriented Programming, Problem solving, Teamwork, Communication <br>
+        TOOLS: Java 
+
+        <div class="separatorLine" id="Y1-MD"></div>
+
+        <div class="subtitle">
+            Discrete Mathematics and Databases – 82%
+        </div> <br>
+        Developed a foundational understanding of the mathematical structures used to reason about computation, including set theory, functions, relations, 
+        and formal logic. Learned to calculate and reason with sets, express assertions using predicate calculus, and construct basic mathematical proofs. Explored 
+        low-complexity computational models such as logic circuits and finite state machines and applied this knowledge in practical contexts by writing database 
+        queries using formal relational algebra. Gained awareness of the security, ethical, legal, and professional considerations surrounding data storage and database management. <br> <br>
+
+        TOOLS: SQL
+
+        <div class="separatorLine" id="Y1-MC"></div>
+
+        <div class="subtitle">
+            Mathematics for Computation – 74%
+        </div> <br>
+        Gained a solid foundation in linear algebra, including techniques involving matrices, vectors, Gaussian elimination, and eigenvalues, and learned to perform these calculations using software tools such as MATLAB or Maple. Developed the ability to classify functions as continuous, smooth, or analytic, and to reason about infinite series, including Taylor and Maclaurin expansions. Explored elementary number theory and its application to the mathematical foundations of cryptography, including concepts underlying public key systems.
+    `;
+
+    secondYearContent = 
+    `
+        <div class="subtitle" id="Y2-AC">
+            Algorithms and Complexity – 89%
+        </div> <br>
+        Explored fundamental models of computation, including finite automata, pushdown automata, and Turing machines, alongside their corresponding classes of 
+        formal grammars and languages, such as regular and context-free languages. Solved specific computational problems using algorithms designed as appropriate automata 
+        and analysed their correctness and computational complexity. Covered the theoretical limits of computation, including the use of the Pumping Lemma to prove 
+        the existence of non-regular and non-context-free languages, and formal proofs of undecidability for certain problems within specific computational models. 
+        Examined various data structures and algorithms, selecting and applying the most suitable ones for given problems.
+
+        <div class="separatorLine" id="Y2-VC"></div>
+
+        <div class="subtitle">
+            Visual Computing – 78%
+        </div> <br>
+        Covered fundamental mathematical and computational techniques for processing and analysing digital images and videos. Explored how images and videos 
+        are formed and displayed, learned core image processing operations such as filtering, transformations, and warping, and implemented low-level computer vision 
+        techniques like edge and corner detection. Tackled mid-level vision tasks including tracking, optical flow, and stereo vision, with a focus on selecting appropriate 
+        algorithms for specific challenges. Examined 2D and 3D object modelling, transformations, and rendering techniques such as ray tracing, lighting, and shading to generate 
+        realistic images. Experimented with interactive graphics, animation, and basic panorama stitching. Explored machine learning pipelines for computer vision, including 
+        implementing basic convolutional neural networks (CNNs) for end-to-end learning systems. <br> <br>
+
+        TOOLS: Python, cv2
+
+        <div class="separatorLine" id="Y2-ML"></div>
+
+        <div class="subtitle">
+            Machine Learning – 68%
+        </div> <br>
+        Explore core concepts and algorithms in machine learning, including supervised, unsupervised, and reinforcement learning. Topics covered include support vector machines, deep neural networks, regularisation, ensemble methods, random forests, clustering, dimensionality reduction, Markov Decision Processes, and Q-learning. Learned to distinguish between different formulations of machine learning challenges, understand the strengths and limitations of various techniques, and implement machine learning models using software libraries to apply these techniques to real-world problems.
+
+        <br> <br>
+
+        TOOLS: Python, Pytorch, TensorFlow, Scikit-learn, Keras
+
+        <div class="separatorLine" id="Y2-SWE"></div>
+
+        <div class="subtitle">
+            Software Engineering – 62%
+        </div> <br>
+        Worked in a team to propose, design, develop, and evaluate a software system using an agile framework. Learned to gather and analyse requirements, create specifications,
+        design and prototype systems, and develop software supported by models and test cases. Emphasis was placed on systematic testing of both functional and non-functional 
+        aspects, as well as managing project risks, addressing cyber-security and ethical considerations, and adhering to quality assurance practices.  <br> <br>
+
+        SKILLS: Report writing, Presentation, Project management, Teamwork, Critical reflection, Effective communication. <br>
+        TOOLS: Git, Docker, HTML, CSS, JavaScript, Python, SQL 
+
+        <div class="separatorLine" id="Y2-HCI1"></div>
+
+        <div class="subtitle">
+            Human Computer Interaction 1 - 73%
+        </div> <br>
+        Explored the foundations of human-computer interaction and user experience design, focusing on principles of interaction design applicable to a wide range of interactive 
+        systems. Worked in a team to apply design methods such as prototyping, accessibility considerations, and user interface (UI) and user experience (UX) principles to develop 
+        a functional prototype tailored to a specific user group's goals. Learned how to evaluate interactive systems through user testing while addressing ethical considerations. <br> <br>
+
+        SKILLS: Problem solving, Communication, Teamwork <br>
+        TOOLS: Microsoft Office
+
+        <div class="separatorLine" id="Y2-HCI2"></div>
+
+        <div class="subtitle">
+            Human Computer Interaction 2 – 75%
+        </div> <br>
+        Built on the foundational knowledge of human-computer interaction by exploring how human perception, cognition, and behaviour impact the design and evaluation of interactive systems. 
+        Learned to assess user interface quality through understanding user psychology and modelling human-computer interactions. Examined research methods, learning how to collect, analyse,
+        and present data from empirical studies. Applied both analytical and empirical evaluation techniques such as usability testing and qualitative/quantitative analysis to critically 
+        assess interaction designs. Explored contemporary HCI topics like virtual and augmented reality interfaces and human-robot interaction. <br> <br>
+
+        SKILLS: Problem solving, Teamwork, Communication
+
+        <div class="separatorLine" id="Y2-CS"></div>
+
+        <div class="subtitle">
+            Cyber Security – 73%
+        </div> <br>
+        Explored the fundamentals of computer security at both hardware and software levels, learning to describe common security models such as Unix and Multics, and to evaluate what it 
+        means for a system to be secure. Examined typical vulnerabilities and attacks including password weaknesses, man-in-the-middle attacks, and issues identified in the OWASP Top Ten, 
+        and learned how to identify security flaws in existing and proposed systems. Covered hardware-based protections like memory mapping and virtual memory, as well as legal frameworks 
+        such as the Data Protection Act and the Freedom of Information Act, providing a broad understanding of technical and legislative aspects of system security.
+
+        <div class="separatorLine" id="Y2-AP"></div>
+
+        <div class="subtitle">
+            Advanced Programming – 65%
+        </div> <br>
+        Explored a wide range of programming paradigms, including functional, procedural, object-oriented, logic, scripting, declarative, and event-driven, and learned to recognise 
+        their differences and appropriate use cases. Examined various language features such as compilation methods, memory management, typing systems, and parameter passing strategies. 
+        Developed the ability to choose the most suitable programming approach for a given problem by comparisons of languages and styles. Gained practical skills in debugging, profiling, 
+        and benchmarking to evaluate and optimise program performance. <br> <br>
+
+        SKILLS: Manual Memory Management <br>
+        TOOLS: C (Programming Language)
+    `
+
+    hciInternshipContent = 
+    `
+        <div class="subtitle">
+            Collision Prevention Project
+        </div> <br>
+        
+        Collaborated with another intern to develop a VR local multiplayer game designed to evaluate collision prevention systems in confined play spaces. <br>
+        Designed and implementing an interactive environment that encouraged players to move around and engage with various objects, effectively testing the 
+        collision prevention tools. Specific work included creating and networking interactable objects, developing a system that allowed players to pass objects 
+        to one another, and designing a learn-by-exploring tutorial to onboard users and introduce gameplay mechanics intuitively. Worked extensively with Unity's 
+        VR and Netcode systems, gaining hands-on experience with network synchronization, object ownership, and multiplayer interactions. <br>
+        Used GitHub for version control and Jira to manage our tasks, which proved especially helpful in avoiding duplicate work after initially overlapping on a feature. 
+        By writing detailed Jira tickets, we streamlined our collaboration, evenly distributed the workload, and maintained clear visibility into the project's progress. <br> <br>
+
+        SKILLS: Teamwork, Communication <br>
+        TOOLS: Unity, Git, VR
+
+        <div class="separatorLine"></div>
+
+        <div class="subtitle">
+            Stroke Rehabilitation Project
+        </div> <br>
+
+        Independently developed a VR exergame aimed at aiding the rehabilitation of stroke patients by helping them regain upper limb mobility using visualisation and physical exercise.<br>
+        Designed a variety of engaging minigames focused on encouraging physical movement, tailored to support different types of needs and stages of recovery. Improved 
+        maintainability and scalability by refactoring the existing codebase using object-oriented principles, reducing code size by 80% and significantly improving readability 
+        through effective abstraction. <br>
+        Facing a lack of initial guidance and feedback, I took the initiative to organize weekly stand-up meetings with supervisors from both technical and non-technical 
+        backgrounds. By clearly communicating my progress and proposed ideas in a way that was accessible to all stakeholders, I ensured alignment with project goals and 
+        enabled informed decision-making throughout the development process. <br> <br>
+
+        SKILLS: Presentation, Communication <br>
+        TOOLS: Unity, VR
+    `
+
+    ieukInternshipContent = 
+    `
+        Participated in a series of professional development workshops and panel discussions that enhanced both my technical and interpersonal skill sets. Sessions covered a wide 
+        range of topics, including strategies for mastering communication and collaboration, real-world AI applications, and the importance of verification and testing in STEM roles. <br>
+
+        I deepened my understanding of project management methodologies, including agile practices, and learned how to apply creative problem-solving and design thinking to complex 
+        challenges. <br>
+        
+        I also developed key soft skills through workshops on communication, collaboration, and building a problem-solving mindset. <br>
+        
+        These experiences collectively strengthened my ability to think critically, communicate effectively, and adapt confidently in both technical and professional environments.
+    `
+
+    cybersecCourseContent = 
+    `
+        Gained a comprehensive introduction to the field of cybersecurity, exploring its historical evolution, current significance, and the responsibilities of entry-level roles. 
+        Learned how cybersecurity professionals manage risk using established frameworks, tools, and security controls to protect organizational operations. The course provided 
+        foundational knowledge in network security, highlighting common vulnerabilities and how to secure networks effectively. Developed technical skills by working with the Linux 
+        command line, querying databases using SQL, and writing Python scripts to automate cybersecurity tasks. Studied the incident response lifecycle, learning how to detect, 
+        classify, and respond to cybersecurity incidents, and practiced effective communication with both technical and non-technical stakeholders. The course concluded with insights 
+        into career preparation, the importance of community engagement, and the emerging role of AI in cybersecurity. <br> <br>
+
+        TOOLS: Linux, Bash (Programming Language), Tcpdump, WireShark, SQL, Python
+    `
+
+    highSchoolContent = 
+    `
+        <div class="subtitle">
+            Sixth Form
+        </div> <br>
+        Mathematics – A* <br>
+        Computer Science – A <br>
+        Product Design – A
+
+        <div class="separatorLine"></div>
+
+        <div class="subtitle">
+            Secondary School
+        </div> <br>
+        9 GCSEs at grades A*-B, including two A*s in Mathematics and a B for English <br>
+        Optional Subjects – ICT, Product Design, Leadership Through Sports, 
+    `
+
+    function InsertContent()
+    {
+        document.getElementById("FirstYearContent").innerHTML = firstYearContent;
+        document.getElementById("SecondYearContent").innerHTML = secondYearContent;
+        document.getElementById("HciInternshipContent").innerHTML = hciInternshipContent;
+        document.getElementById("IeukInternshipContent").innerHTML = ieukInternshipContent;
+        document.getElementById("CybersecCourseContent").innerHTML = cybersecCourseContent;
+        document.getElementById("HighSchoolContent").innerHTML = highSchoolContent;
+    }
+</script>
+
+<html>
+<body>
+    <main style=
+    "width: 100%;">
+        <img src="CloudsBackground.png" class="scrollingBackground">
+
+        <div style=
+        "background-color: rgba(255, 255, 255, 0.9);
+        width: 30cm;
+        margin: 40px auto 120px;
+
+        outline-color: rgb(87, 87, 87);
+        outline-width: 1px; 
+        outline-style: solid;
+        border-radius: 5px;
+        padding-bottom: 5px">
+            <div style="
+            font-size: 52px;
+
+            display: flex;
+            align-items: center;
+            padding: 30px;
+
+            box-shadow: 0px 4px 13px -3px black;
+            ">
+                Journey
+            </div>
+            
+
+            <div class="section" id="CybersecurityCertificate">
+                <div class="sectionHeader">
+                    <div class="title">Google Cybersecurity Professional Certificate</div>
+                    <div class="subtitle">Aug 2025 – Sept 2025</div>
+                </div>
+                <p id="CybersecCourseContent"></p>
+            </div>
+
+            <div class="section" id="IEUKInternship">
+                <div class="sectionHeader">
+                    <div class="title">IEUK Internship</div>
+                    <div class="subtitle">July 2025</div>
+                </div>
+                <p id="IeukInternshipContent"></p>
+            </div>
+
+            <div class="section" id="SecondYear">
+                <div class="sectionHeader">
+                    <div class="title">University of Bath - Second Year</div>
+                    <div class="subtitle">Oct 2024 – June 2025</div>
+                </div>
+                <p id="SecondYearContent"></p>
+            </div>
+
+            <div class="section" id="SummerPlacement">
+                <div class="sectionHeader">
+                    <div class="title">Software Engineer Intern - University of Bath</div>
+                    <div class="subtitle">June 2024 – Sept 2024</div>
+                </div>
+                <p id="HciInternshipContent"></p>
+            </div>
+
+            <div class="section" id="FirstYear">
+                <div class="sectionHeader">
+                    <div class="title">University of Bath - First Year</div>
+                    <div class="subtitle">Oct 2023 – June 2024</div>
+                </div>
+                <p id="FirstYearContent"></p>
+            </div>
+
+            <div class="section" id="HighSchool">
+                <div class="sectionHeader">
+                    <div class="title">Fitzalan High School</div>
+                    <div class="subtitle">Sept 2019 – June 2023 </div>
+                </div>
+                <p id="HighSchoolContent"></p>
+            </div>
+            
+            
+        </div>
+        
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            InsertContent()
+        });
+    </script>
+
+</body>
+</html>

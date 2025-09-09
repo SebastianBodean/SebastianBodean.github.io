@@ -1,0 +1,20 @@
+/* Background animations */
+@keyframes scroll
+{
+    from{left: 0%;}
+    to  {left: -200%;}
+}
+
+.scrollingBackground
+{
+    position: fixed; 
+    height: 100%;
+    width: 300%;
+    top: 0%; 
+    left: 0%;
+    z-index: -1;
+    animation-name: scroll;
+    animation-duration: 200s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
