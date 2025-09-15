@@ -1,25 +1,13 @@
 <!DOCTYPE html>
 
 <script type="text/javascript" src="customElements.js"></script>
-<link rel="stylesheet" type="text/css" href="animations.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/animations.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/format.css">
 
 <style>
     html { height: 100%; width: 100%; margin: 0; overflow: hidden; scrollbar-width: none;}
     body { height: 100%; width: 100%; overflow: scroll; scrollbar-width: none;}
     p { font-size: large; text-decoration: none;}
-
-    .title 
-    {
-        font-size: 32px;
-    }
-
-    .separatorLine
-    {
-        border-bottom: outset;
-        margin: 20px 0px;
-    }
-
-    .subtitle { font-size: larger;}
 
     .content
     {
@@ -29,12 +17,10 @@
 
     .section
     {
-        display: flex;
         flex-direction: column;
         padding: 30px;
-        box-shadow: 0px 4px 13px -3px black;
-        border-radius: 15px;
-        margin: 10px;
+        box-shadow: inset 0px 1px 7px -3px black;
+        margin-bottom: 10px;
     }
 
     .sectionHeader
@@ -311,32 +297,36 @@
         <img src="CloudsBackground.png" class="scrollingBackground">
 
         <div style=
-        "background-color: rgba(255, 255, 255, 0.9);
-        width: 30cm;
-        margin: 40px auto 120px;
+        "
+            background-color: snow;
 
-        outline-color: rgb(87, 87, 87);
-        outline-width: 1px; 
-        outline-style: solid;
-        border-radius: 5px;
-        padding-bottom: 5px">
-            <div style="
-            font-size: 52px;
+            outline-color: rgb(87, 87, 87);
+            outline-width: 1px; 
+            outline-style: solid;
+            border-radius: 5px;
+            padding-bottom: 5px;
+            box-shadow: 0px 0px 20px -10px black;
 
-            display: flex;
-            align-items: center;
-            padding: 30px;
+            width: 30cm;
+            margin: 40px auto 120px;
+        ">
+            <div class="head1" style=
+            "
+                background-color: antiquewhite;
+                box-shadow: 0px 3px 9px -3px black;
 
-            box-shadow: 0px 4px 13px -3px black;
+                display: flex;
+                align-items: center;
+                padding: 30px;
             ">
-                Journey
+                Education and Work Experience
             </div>
             
 
             <div class="section" id="CybersecurityCertificate">
                 <div class="sectionHeader">
                     <div class="title">Google Cybersecurity Professional Certificate</div>
-                    <div class="subtitle">Aug 2025 – Sept 2025</div>
+                    <div class="essential">Aug 2025 – Sept 2025</div>
                 </div>
                 <p id="CybersecCourseContent"></p>
             </div>
@@ -344,7 +334,7 @@
             <div class="section" id="IEUKInternship">
                 <div class="sectionHeader">
                     <div class="title">IEUK Internship</div>
-                    <div class="subtitle">July 2025</div>
+                    <div class="essential">July 2025</div>
                 </div>
                 <p id="IeukInternshipContent"></p>
             </div>
@@ -352,7 +342,7 @@
             <div class="section" id="SecondYear">
                 <div class="sectionHeader">
                     <div class="title">University of Bath - Second Year</div>
-                    <div class="subtitle">Oct 2024 – June 2025</div>
+                    <div class="essential">Oct 2024 – June 2025</div>
                 </div>
                 <p id="SecondYearContent"></p>
             </div>
@@ -360,7 +350,7 @@
             <div class="section" id="SummerPlacement">
                 <div class="sectionHeader">
                     <div class="title">Software Engineer Intern - University of Bath</div>
-                    <div class="subtitle">June 2024 – Sept 2024</div>
+                    <div class="essential">June 2024 – Sept 2024</div>
                 </div>
                 <p id="HciInternshipContent"></p>
             </div>
@@ -368,7 +358,7 @@
             <div class="section" id="FirstYear">
                 <div class="sectionHeader">
                     <div class="title">University of Bath - First Year</div>
-                    <div class="subtitle">Oct 2023 – June 2024</div>
+                    <div class="essential">Oct 2023 – June 2024</div>
                 </div>
                 <p id="FirstYearContent"></p>
             </div>
@@ -376,7 +366,7 @@
             <div class="section" id="HighSchool">
                 <div class="sectionHeader">
                     <div class="title">Fitzalan High School</div>
-                    <div class="subtitle">Sept 2019 – June 2023 </div>
+                    <div class="essential">Sept 2019 – June 2023 </div>
                 </div>
                 <p id="HighSchoolContent"></p>
             </div>

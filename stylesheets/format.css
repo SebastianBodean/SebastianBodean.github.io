@@ -1,0 +1,21 @@
+h1 { font-size: 52px;}
+
+.head1 { font-size: 52px;}
+.title { font-size: 32px;}
+.subtitle { font-size: 22px;}
+.essential { font-size: 19.4px}
+
+.superLarge 
+{
+    font-size: 100px;
+    color: white;
+    font-weight: bold;
+    font-family: cursive;
+    text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+}
+
+.separatorLine
+{
+    border-bottom: outset;
+    margin: 20px 0px;
+}
