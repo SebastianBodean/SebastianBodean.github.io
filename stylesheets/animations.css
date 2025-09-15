@@ -19,3 +19,67 @@
     animation-iteration-count: infinite;
 }
 
+
+/* Fade In and Fade Out animations */
+@keyframes fade 
+{
+    from{opacity: 0;}
+    to  {opacity: 1;}
+}
+
+.fadeInContent
+{
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 200%;    width: 30cm;
+    margin: 40px auto;
+
+    outline-color: rgb(87, 87, 87);
+    outline-width: 1px; 
+    outline-style: solid;
+    border-radius: 5px;
+    
+    animation: fade 1s ease-out normal both paused;
+}
+
+.fadeOutTitle
+{
+    background-color: rgba(255, 255, 255, 0.0);
+    height: 100%;    width: 100%;
+    position: absolute;
+    top: 0%;
+
+    align-content: center;
+    justify-items: center;
+
+    z-index: 5;
+
+    animation: fade 1s ease-out reverse both paused;
+}
+
+
+@keyframes slideFade 
+{
+    from{opacity: 0; left: 50%;}
+    to  {opacity: 1; left: 0%;}
+}
+
+.slideInTab
+{
+    background-color: rgba(137, 43, 226, 0);
+    width: 100%;    height: 2cm;
+    position: relative;
+    margin: 5px auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    animation: slideFade 1s normal both paused;
+    transition: background-color 0.25s cubic-bezier(0, 0.65, 0.46, 0.99);
+}
+
+.slideInTab:hover
+{
+    background-color: rgba(137, 43, 226, 0.1);
+}
+

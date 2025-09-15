@@ -1,21 +1,450 @@
 <!DOCTYPE html>
 
+<script type="text/javascript" src="customElements.js"></script>
+<link rel="stylesheet" type="text/css" href="stylesheets/animations.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/format.css">
+
+<style>
+    html { height: 100%; width: 100%; margin: 0; overflow: hidden; scrollbar-width: none;}
+    body { height: 100%; width: 100%; overflow: scroll; scrollbar-width: none;}
+    button { cursor: pointer; padding: 0px; border: none;}
+
+    .vl { border-bottom: 1px solid black;}
+    .textDoc { padding: 1.2cm; top: auto;}
+
+    .content 
+    {
+        background-color: rgba(255, 255, 255, 0.9);
+        outline-color: rgb(87, 87, 87);
+        outline-width: 1px; outline-style: solid;
+        border-radius: 5px;
+        margin: auto;
+        width: 30cm;
+        height: 200%;
+        opacity: 0;
+    }
+
+    .section
+    {
+        flex-direction: column;
+        margin-bottom: 25px;
+    }
+
+    /* Tabs Styles*/
+    img.icon
+    {
+        height: 60%;
+        padding: 10px;
+    }
+
+    p.tabTitle
+    {
+        font-size: x-large;
+        margin-right: auto;
+        text-align: left;
+    }
+
+    p.count
+    {
+        padding: 26px;
+        font-size: xx-large;
+    }
+
+    
+</style>
 
 <html>
 
 <!-- JavaScript code -->
 <script type = "text/javascript">
-    //Redirect to different page
-    function RedirectContent()
+    titleVisible = true;
+    title.style.animation
+
+    const title = document.getElementById("titleScreen");
+    const content = document.getElementById("content");
+
+    function Redirect(address)
     {
-        window.location.replace("https://SebastianBodean.github.io/experience.html")
+        window.location.href = address;
+    }
+
+    function DisplayContent(animationDuration)
+    {
+        const frameRate = 30;
+        frame = 0
+        titleVisible = false;
+
+        //console.log(animationDuration * frameRate);
+        
+        document.getElementById("titleScreen").style.opacity = 1;
+        animInterval = setInterval( function() {FadeInAnimation(animationDuration, frameRate)}, 
+                                    1000 / frameRate);
+    }
+
+    function FadeInAnimation(duration, frameRate)
+    {
+        console.log(duration * frameRate);
+        console.log(frame == duration * frameRate);
+        
+        frame += 1;
+        document.getElementById("titleScreen").style.opacity -= (1 / frameRate) / duration ;
+
+        if (frame == duration * frameRate)
+        {
+            console.log("Working");
+            
+            clearInterval(animInterval);
+        
+            //
+            document.getElementById("titleScreen").style.opacity = 0;
+            document.getElementById("temp").style.opacity = 1;
+        }
+    }
+
+    function FadeComponent(component, duration = 1, frameRate = 30, startAlpha = 0, endAlpha = 1)
+    {
+        const alphaDiff = startAlpha - endAlpha;
+        const change = 1/ (duration * frameRate);
+
+        component.style.opacity = startAlpha;
+
+        anim = setInterval( function() 
+        {
+            FadeAnimation(component, change, alphaDiff);
+        },  1000 / frameRate);
+
+        setTimeout( function() 
+        {
+            clearInterval(anim);  
+            component.style.opacity = endAlpha;
+        },  1000 * duration);
+    }
+
+    function FadeAnimation(component, rateOfChange, alphaDifference)
+    {
+        //Addition doesn't work for some reason so we subtract instead
+        component.style.opacity -= alphaDifference * rateOfChange;
+    }
+
+    function Transition()
+    {
+        if (window.scrollY == 0)
+        {
+            console.log("Window is at the top of the screen");
+            document.getElementById("titleScreen").style.opacity = 1;
+            document.getElementById("temp").style.opacity = 0;
+        }
+        else
+        {
+            opacity = 0.5;
+            console.log("Window is NOT at the top of the screen");
+            document.getElementById("titleScreen").style.opacity = 0;
+            document.getElementById("temp").style.opacity = opacity;
+        }
+            
+        // TODO: Check if the user is at the top of the screen
+        // and if they are scrolling down
+        //if (titleVisible)
+        //    DisplayContent();
+        // TODO: Check if the user is at the top of the screen
+        // and scrolling up
+        //else
+        //    DisplayTitle();
+    }
+</script>
+
+<!-- Content -->
+<script type = "text/javascript">
+
+    aboutMeContent = 
+    `
+        I am a 3rd year Computer Science student at the University of Bath, who is interested in User Experience, Cybersecurity, Computer Vision, 
+        and Machine Learning. I’m currently searching for a placement which would allow me to apply what I’ve learned throughout both my academic 
+        and work life and make a real impact in the world, while learning new skills. <br>
+
+        My journey began with a wish to develop my own videogame and build a good reputation for my creativity and good work ethics. <br>
+
+        In my spare time, I like playing video games, composing electronic music, cooking intricate dishes, and I’m passionate about kickboxing. 
+        I also like working on small, personal projects, even if they may never be seen by the public. Regardless, I enjoy creating unique, silly projects for the sake of learning and discovery.
+    `
+    achievementContent = 
+    `
+        My biggest achievement so far has been securing a summer internship with the Human-Computer Interaction research team at the University of Bath. There, I helped create the 
+        software that would be used to gather data for their studies. <br>
+
+        My motivation for applying to this internship was not only to gain work experience, but also to learn about HCI ahead of the related units in my upcoming academic year. The 
+        position was very competitive, but by showcasing my portfolio, I earned a spot on the team!<br>
+
+        I really enjoyed working with the researchers at the university, and I hope I will be able to find other opportunities which would be as exciting as this one.
+
+    `
+
+    favProjectContent = 
+    `
+        My favourite project so far has been the visual computing project. Despite being an absolute nightmare to implement due to the poorly explained algorithms and conflicting 
+        versions which lacked an explanation of their use cases, it was so satisfying seeing the finished result. <br>
+
+        The most memorable part of the project was the object tracking algorithm. It pushed to use everything I learned up to that point to experiment and come up with new versions 
+        that would address the existing algorithms. This process tested both my understanding of the algorithm and my problem-solving skills.
+
+    `
+
+    strengthsContent = 
+    `
+        Throughout my life, I’ve developed a variety of life skills which I take pride in. However, in both academic and professional settings, there has been a set of core 
+        strengths which consistently stood out: <br>
+
+        Collaboration– I am a strong team player, who values others’ ideas and contributes my own opinions. Additionally, I will challenge ideas, not for 
+        the sake of arguments, but to reach a better solution or understand the individual's thought process, and if I’m wrong, I’m not afraid to admit my mistakes, as I consider these
+        a learning opportunity. I’m highly adaptable and I will take on any role the team requires. However, I sometimes find it difficult to work with people who try to manage every 
+        aspect of a project by themselves, as this hinders team synergy. When this happens, I try to remind everyone working as a team is more efficient than doing all the work alone. <br>
+
+        Creative thinking & problem solving– Having worked on many projects, I’ve frequently encountered challenges which lacked clear solutions. I’ve learned to step back, assess 
+        the obstacle from all angles, and find a creative workaround, utilising the tools at my disposal in unintuitive ways to reach the goal. <br>
+
+        Time management– I’m skilled at planning ahead, ensuring I meet deadlines without compromising on quality. This allows me to use my time efficiently and quickly adapt to 
+        unforeseen circumstances, such as a last-minute change of plans or stepping in to help a colleague with their work.
+    `
+
+    function InsertContent()
+    {
+        document.getElementById("AboutMeContent").innerHTML = aboutMeContent;
+        document.getElementById("AchievementContent").innerHTML = achievementContent;
+        document.getElementById("FavProjectContent").innerHTML = favProjectContent;
+        document.getElementById("StrengthsContent").innerHTML = strengthsContent;
     }
 
 </script>
+    
+</script>
+
+<body onload="InitCustomElements();">
+    <main style=
+    "height: 100%;
+    width: 100%;">
+        <img src="CloudsBackground.png" class="scrollingBackground">
+        
+        <div id="titleScreen" class="fadeOutTitle"
+        onmousedown="
+        {
+            const thisE = document.getElementById('titleScreen');
+            const otherE = document.getElementById('temp');
+            const html = document.querySelector('html');
+            
+            thisE.style.animationPlayState = 'running';
+            
+            setTimeout(function() 
+            {
+                thisE.remove();
+                otherE.style.animationPlayState = 'running';
+                html.style.overflow = scroll;
+
+                const tabs = document.getElementsByClassName('slideInTab');
+                for (let i = 0; i < tabs.length; i++) 
+                {
+                    tabs[i].style.animationPlayState = 'running';
+                    tabs[i].style.animationDelay = 1 + 0.2 * i +'s'
+                    
+                }
+            }, 1000);
+        }">
+            <div class="superLarge">
+                <div> <windy-text>WELCOME</windy-text> </div>
+            </div>
+        </div>
+        
+
+        <div id="temp" class="fadeInContent">
+            <div style=
+            "
+                background-color: #fbf6ef;; 
+                box-shadow: 0px 3px 9px -3px black;
+                display: flex;
+
+                width: 100%;
+                padding: 15px 0px;
+                /* border-bottom: 1px solid black; */
+            ">
+                <img src="ProfilePicture.jpg" style="
+                    margin: 10px;
+                    width: 4cm;
+                    outline: solid;
+                    outline-width: thin;
+                    border-radius: 5px;
+                ">
+                <div style=
+                "
+                    flex: auto;
+                    height: 90%;
+                ">
+                    <h1 style="margin: 0px;">Sebastian George Bodean</h1>
+                    <div style="font-variant-emoji: text;">
+                        <div>&#127891 University Of Bath</div>
+                        <div>&#127968 Cardiff, UK</div>
+                    </div>
+                </div>
+                
+                <div style=
+                "
+                    width: 26%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                ">
+                    
+                    <div style="display: flex;">
+                        <button onclick="Redirect('https:www.linkedin.com/in/sebastian-bodean-aa8805326');"
+                        style=
+                        "
+                            background-color: white;
+                            box-shadow: 0px 2px 6px -3px black;
+
+                            overflow: hidden;
+
+                            height: 59px; width: 59px;
+                            border-radius: 6px;
+                            margin: 5px;
+                        ">
+                            <img src="Icons/SocMed/LI-In-Bug.png" style="height: 60px;">
+                        </button>
+
+                        <button onclick="Redirect('https://github.com/SebastianBodean');"
+                        style=
+                        "
+                            background-color: white;
+                            box-shadow: 0px 2px 6px -3px black;
+
+                            height: 60px;
+                            border-radius: 6px;
+                            margin: 5px;
+                        ">
+                            <img src="Icons/SocMed/github-mark.png" style="height: 60px;">
+                        </button>
+                    </div>
+
+                    <button onclick="Redirect('mailto:sgbodean@gmail.com');"
+                    style=
+                    "
+                        /* background-image: linear-gradient(45deg, #fbd884, #F0A8B0, #A4F4D7);  This will be the selection colour*/
+                        background-image: linear-gradient(45deg, #FDECC4, #F6CBCF, #C8F9E5);
+                        box-shadow: 0px 2px 6px -3px black;
+
+                        display: flex;
+
+                        font-size: large;
+
+                        width: 240px;
+                        padding: 4px;
+                        margin: 5px;
+                        border-radius: 5px;
+                    ">
+                        <div style=
+                        "
+                            background-color: var(--bgCol);
+
+                            text-shadow: #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+                            color: white;
+                            
+                            width: inherit;
+                            padding: 3px;
+                            border-radius: 0px 3px 3px 0px;
+                        ">
+                            sgbodean@gmail.com
+                        </div> 
+                        
+                    </button>
+
+                    <button onclick="Redirect('mailto:sgb55@bath.ac.uk');"
+                    style=
+                    "
+                        /* background-image: linear-gradient(45deg, #fbd884, #F0A8B0, #A4F4D7);  This will be the selection colour*/
+                        background-image: linear-gradient(45deg, #FDECC4, #F6CBCF, #C8F9E5);
+                        box-shadow: 0px 2px 6px -3px black;
+
+                        display: flex;
+
+                        font-size: large;
+
+                        width: 240px;
+                        padding: 4px;
+                        margin: 5px;
+                        border-radius: 5px;
+                    ">
+                        <div style=
+                        "
+                            background-color: var(--bgCol);
+
+                            text-shadow: #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+                            color: white;
+                            
+                            width: inherit;
+                            padding: 3px;
+                            border-radius: 0px 3px 3px 0px;
+                        ">
+                            sgb55@bath.ac.uk
+                        </div> 
+                        
+                    </button>
+                </div>
+            </div>
+            
+            <div style=
+            "
+            display: inline-flex;
+            width: 100%; height: 90%;
+            ">
+                <div style=
+                "
+                width: 75%;
+                padding: 20px;
+                border-right: 1px solid black;
+                ">
+                    <div class="section">
+                        <div class="title">About Me</div>
+                        <div id="AboutMeContent"></div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="title">Top 3 Strengths</div>
+                        <div id="StrengthsContent"></div>
+                    </div>
+
+                    <div class="section">
+                        <div class="title">Greatest Achievement</div>
+                        <div id="AchievementContent"></div>
+                    </div>
+
+                    <div class="section">
+                        <div class="title">Favourite Project</div>
+                        <div id="FavProjectContent"></div>
+                    </div>                    
+                </div>
+
+                <div style=
+                "
+                flex: auto;
+                ">
+                    <button class="slideInTab" onclick="Redirect('https://sebastianbodean.github.io/experience');">
+                        <img src="InternshipIcon.png" class="icon">
+                        <p class="tabTitle">Work & Education</p>
+                        <p class="count">7</p>
+                    </button>
 
 
-<body onload="RedirectContent();">
 
+                </div>
+            </div>
+            
+            
+        </div>
+        
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            InsertContent()
+        });
+    </script>
 
 </body>
 </html>
