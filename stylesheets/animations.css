@@ -83,3 +83,24 @@
     background-color: rgba(137, 43, 226, 0.1);
 }
 
+/* BUTTONS */
+
+.socialButton
+{
+    background-image: linear-gradient(45deg, #FDECC4, #F6CBCF, #C8F9E5);
+    box-shadow: 0px 2px 6px -3px black;
+
+    display: flex;
+
+    font-size: large;
+
+    width: 240px;
+    padding: 4px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.socialButton:hover
+{
+    background-image: linear-gradient(45deg, #FBDF9D, #F0A8B0, #A4F4D7);
+}

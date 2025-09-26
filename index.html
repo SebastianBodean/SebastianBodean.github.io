@@ -55,104 +55,6 @@
 
 <html>
 
-<!-- JavaScript code -->
-<script type = "text/javascript">
-    titleVisible = true;
-    title.style.animation
-
-    const title = document.getElementById("titleScreen");
-    const content = document.getElementById("content");
-
-    function Redirect(address)
-    {
-        window.location.href = address;
-    }
-
-    function DisplayContent(animationDuration)
-    {
-        const frameRate = 30;
-        frame = 0
-        titleVisible = false;
-
-        //console.log(animationDuration * frameRate);
-        
-        document.getElementById("titleScreen").style.opacity = 1;
-        animInterval = setInterval( function() {FadeInAnimation(animationDuration, frameRate)}, 
-                                    1000 / frameRate);
-    }
-
-    function FadeInAnimation(duration, frameRate)
-    {
-        console.log(duration * frameRate);
-        console.log(frame == duration * frameRate);
-        
-        frame += 1;
-        document.getElementById("titleScreen").style.opacity -= (1 / frameRate) / duration ;
-
-        if (frame == duration * frameRate)
-        {
-            console.log("Working");
-            
-            clearInterval(animInterval);
-        
-            //
-            document.getElementById("titleScreen").style.opacity = 0;
-            document.getElementById("temp").style.opacity = 1;
-        }
-    }
-
-    function FadeComponent(component, duration = 1, frameRate = 30, startAlpha = 0, endAlpha = 1)
-    {
-        const alphaDiff = startAlpha - endAlpha;
-        const change = 1/ (duration * frameRate);
-
-        component.style.opacity = startAlpha;
-
-        anim = setInterval( function() 
-        {
-            FadeAnimation(component, change, alphaDiff);
-        },  1000 / frameRate);
-
-        setTimeout( function() 
-        {
-            clearInterval(anim);  
-            component.style.opacity = endAlpha;
-        },  1000 * duration);
-    }
-
-    function FadeAnimation(component, rateOfChange, alphaDifference)
-    {
-        //Addition doesn't work for some reason so we subtract instead
-        component.style.opacity -= alphaDifference * rateOfChange;
-    }
-
-    function Transition()
-    {
-        if (window.scrollY == 0)
-        {
-            console.log("Window is at the top of the screen");
-            document.getElementById("titleScreen").style.opacity = 1;
-            document.getElementById("temp").style.opacity = 0;
-        }
-        else
-        {
-            opacity = 0.5;
-            console.log("Window is NOT at the top of the screen");
-            document.getElementById("titleScreen").style.opacity = 0;
-            document.getElementById("temp").style.opacity = opacity;
-        }
-            
-        // TODO: Check if the user is at the top of the screen
-        // and if they are scrolling down
-        //if (titleVisible)
-        //    DisplayContent();
-        // TODO: Check if the user is at the top of the screen
-        // and scrolling up
-        //else
-        //    DisplayTitle();
-    }
-</script>
-
 <!-- Content -->
 <script type = "text/javascript">
 
@@ -216,6 +118,30 @@
 
 </script>
     
+<script>
+    function FadeOutTitle()
+    {
+        const thisE = document.getElementById('titleScreen');
+        const otherE = document.getElementById('temp');
+        const html = document.querySelector('html');
+        
+        thisE.style.animationPlayState = 'running';
+        
+        setTimeout(function() 
+        {
+            thisE.remove();
+            otherE.style.animationPlayState = 'running';
+            html.style.overflow = scroll;
+
+            const tabs = document.getElementsByClassName('slideInTab');
+            for (let i = 0; i < tabs.length; i++) 
+            {
+                tabs[i].style.animationPlayState = 'running';
+                tabs[i].style.animationDelay = 1 + 0.2 * i +'s'
+                
+            }
+        }, 1000);
+    }
 </script>
 
 <body onload="InitCustomElements();">
@@ -224,30 +150,10 @@
     width: 100%;">
         <img src="CloudsBackground.png" class="scrollingBackground">
         
-        <div id="titleScreen" class="fadeOutTitle"
-        onmousedown="
-        {
-            const thisE = document.getElementById('titleScreen');
-            const otherE = document.getElementById('temp');
-            const html = document.querySelector('html');
-            
-            thisE.style.animationPlayState = 'running';
-            
-            setTimeout(function() 
-            {
-                thisE.remove();
-                otherE.style.animationPlayState = 'running';
-                html.style.overflow = scroll;
-
-                const tabs = document.getElementsByClassName('slideInTab');
-                for (let i = 0; i < tabs.length; i++) 
-                {
-                    tabs[i].style.animationPlayState = 'running';
-                    tabs[i].style.animationDelay = 1 + 0.2 * i +'s'
-                    
-                }
-            }, 1000);
-        }">
+        <div id="titleScreen" 
+            class="fadeOutTitle"
+            onmousedown="FadeOutTitle()"
+        >
             <div class="superLarge">
                 <div> <windy-text>WELCOME</windy-text> </div>
             </div>
@@ -322,22 +228,7 @@
                         </button>
                     </div>
 
-                    <button onclick="Redirect('mailto:sgbodean@gmail.com');"
-                    style=
-                    "
-                        /* background-image: linear-gradient(45deg, #fbd884, #F0A8B0, #A4F4D7);  This will be the selection colour*/
-                        background-image: linear-gradient(45deg, #FDECC4, #F6CBCF, #C8F9E5);
-                        box-shadow: 0px 2px 6px -3px black;
-
-                        display: flex;
-
-                        font-size: large;
-
-                        width: 240px;
-                        padding: 4px;
-                        margin: 5px;
-                        border-radius: 5px;
-                    ">
+                    <button class="socialButton" onclick="Redirect('mailto:sgbodean@gmail.com');">
                         <div style=
                         "
                             background-color: var(--bgCol);
@@ -354,22 +245,7 @@
                         
                     </button>
 
-                    <button onclick="Redirect('mailto:sgb55@bath.ac.uk');"
-                    style=
-                    "
-                        /* background-image: linear-gradient(45deg, #fbd884, #F0A8B0, #A4F4D7);  This will be the selection colour*/
-                        background-image: linear-gradient(45deg, #FDECC4, #F6CBCF, #C8F9E5);
-                        box-shadow: 0px 2px 6px -3px black;
-
-                        display: flex;
-
-                        font-size: large;
-
-                        width: 240px;
-                        padding: 4px;
-                        margin: 5px;
-                        border-radius: 5px;
-                    ">
+                    <button class="socialButton" onclick="Redirect('mailto:sgb55@bath.ac.uk');">
                         <div style=
                         "
                             background-color: var(--bgCol);
@@ -424,14 +300,39 @@
                 "
                 flex: auto;
                 ">
+                    <div class="slideInTab">
+                        <img src="JourneyIcon.png" class="icon">
+                        <p class="tabTitle">Journey</p>
+                        <p class="count">10</p>
+                        
+                    </div>
+
                     <button class="slideInTab" onclick="Redirect('https://sebastianbodean.github.io/experience');">
                         <img src="InternshipIcon.png" class="icon">
                         <p class="tabTitle">Work & Education</p>
                         <p class="count">7</p>
                     </button>
 
+                    <div class="slideInTab">
+                        <img src="ProjectsIcon.png" class="icon">
+                        <p class="tabTitle">Projects</p>
+                        <p class="count">156</p>
+                    </div>
 
+                    <div class="slideInTab">
+                        <img src="HobbyIcons.png" class="icon">
+                        <p class="tabTitle">Hobbies & Interests</p>
+                        <p class="count">3</p>
+                    </div>
 
+                    <div class="slideInTab">
+                        <img src="InfoIcon.png" class="icon">
+                        <p class="tabTitle">Additional Information</p>
+                    </div>
+
+                    <div class="slideInTab" onclick="Redirect(http://127.0.0.1:4000/test);">
+                        <p class="tabTitle">Testing Grounds</p>
+                    </div>
                 </div>
             </div>
             
@@ -444,6 +345,14 @@
         document.addEventListener("DOMContentLoaded", function(event) {
             InsertContent()
         });
+
+        //Automatically fade out the title screen after 3 seconds
+        setTimeout(function()
+        {
+            try {FadeOutTitle();}
+            catch {}
+        }, 3000);
+        
     </script>
 
 </body>
