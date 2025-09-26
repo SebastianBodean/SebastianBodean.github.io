@@ -63,24 +63,77 @@
     to  {opacity: 1; left: 0%;}
 }
 
-.slideInTab
+.navButton
 {
-    background-color: rgba(137, 43, 226, 0);
-    width: 100%;    height: 2cm;
-    position: relative;
-    margin: 5px auto;
+    --growth-amount: 320px;
+    --transition-params: 0.25s ease-out;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: transparent;
+    overflow: hidden;
+
+    position: relative;
+    height: 2cm;
+    padding: 4px;
+    margin: 5px;
 
     animation: slideFade 1s normal both paused;
-    transition: background-color 0.25s cubic-bezier(0, 0.65, 0.46, 0.99);
+    transition: var(--transition-params);
 }
 
-.slideInTab:hover
+.navButton::before
+{
+    background-image: radial-gradient(#C8F9E5, #F6CBCF 65%);
+    content: '';
+
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    height: 0px;
+    width: 0px;
+    border-radius: 100%;
+
+    transition: var(--transition-params);
+}
+
+.navButton::after
+{
+    background-image: radial-gradient(#FDECC4, #F6CBCF 65%);
+    content: '';
+
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    z-index: -1;
+    height: 0px;
+    width: 0px;
+    border-radius: 100%;
+
+    transition: var(--transition-params);
+}
+
+.navButton:hover
 {
     background-color: rgba(137, 43, 226, 0.1);
+    box-shadow: 0px 0px 6px -2px;
+}
+
+.navButton:hover::before
+{
+    height: var(--growth-amount);
+    width: var(--growth-amount);
+
+    left: calc(var(--growth-amount) * -0.5);
+    top: calc(var(--growth-amount) * -0.5);
+}
+
+.navButton:hover::after
+{
+    height: var(--growth-amount);
+    width: var(--growth-amount);
+
+    right: calc(var(--growth-amount) * -0.5);
+    bottom: calc(var(--growth-amount) * -0.5);
 }
 
 /* BUTTONS */
@@ -88,7 +141,7 @@
 .socialButton
 {
     background-image: linear-gradient(45deg, #FDECC4, #F6CBCF, #C8F9E5);
-    box-shadow: 0px 2px 6px -3px black;
+    box-shadow: 0px 2px 3px -2px black;
 
     display: flex;
 
@@ -98,9 +151,13 @@
     padding: 4px;
     margin: 5px;
     border-radius: 5px;
+
+    transition: 0.05s ease-in-out;
 }
 
 .socialButton:hover
 {
     background-image: linear-gradient(45deg, #FBDF9D, #F0A8B0, #A4F4D7);
+    box-shadow: 0px 2px 6px -2px;
+    scale: 102%;
 }

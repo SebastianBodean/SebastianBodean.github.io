@@ -133,7 +133,7 @@
             otherE.style.animationPlayState = 'running';
             html.style.overflow = scroll;
 
-            const tabs = document.getElementsByClassName('slideInTab');
+            const tabs = document.getElementsByClassName('navButton');
             for (let i = 0; i < tabs.length; i++) 
             {
                 tabs[i].style.animationPlayState = 'running';
@@ -141,6 +141,13 @@
                 
             }
         }, 1000);
+    }
+</script>
+
+<script>
+    function Redirect(address)
+    {
+        window.location.href = address;
     }
 </script>
 
@@ -300,39 +307,51 @@
                 "
                 flex: auto;
                 ">
-                    <div class="slideInTab">
+                    <!--
+                    <div class="navButton"> 
                         <img src="JourneyIcon.png" class="icon">
                         <p class="tabTitle">Journey</p>
                         <p class="count">10</p>
                         
-                    </div>
+                    </div> 
+                    -->
 
-                    <button class="slideInTab" onclick="Redirect('https://sebastianbodean.github.io/experience');">
-                        <img src="InternshipIcon.png" class="icon">
-                        <p class="tabTitle">Work & Education</p>
-                        <p class="count">7</p>
+                    <button class="navButton" onclick="Redirect('https://sebastianbodean.github.io/experience');">
+                        <div style=
+                        "
+                            display: flex;
+                            flex-wrap: nowrap;
+                            align-items: center;
+                            height: -webkit-fill-available;
+                        ">
+                            <img src="InternshipIcon.png" class="icon">
+                            <p class="tabTitle">Work & Education</p>
+                            <p class="count">7</p>
+                        </div>
                     </button>
 
-                    <div class="slideInTab">
+                    <!--
+                    <div class="navButton">
                         <img src="ProjectsIcon.png" class="icon">
                         <p class="tabTitle">Projects</p>
                         <p class="count">156</p>
                     </div>
 
-                    <div class="slideInTab">
+                    <div class="navButton">
                         <img src="HobbyIcons.png" class="icon">
                         <p class="tabTitle">Hobbies & Interests</p>
                         <p class="count">3</p>
                     </div>
 
-                    <div class="slideInTab">
+                    <div class="navButton">
                         <img src="InfoIcon.png" class="icon">
                         <p class="tabTitle">Additional Information</p>
                     </div>
 
-                    <div class="slideInTab" onclick="Redirect(http://127.0.0.1:4000/test);">
+                    <div class="navButton" onclick="Redirect(http://127.0.0.1:4000/test);">
                         <p class="tabTitle">Testing Grounds</p>
                     </div>
+                    -->
                 </div>
             </div>
             
